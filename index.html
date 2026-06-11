@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My GitHub Website</title>
+ <title>My GitHub Website</title>
     <meta name="description" content="Personal website and software projects by Natural-Coding60">
     <style>
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; max-width: 900px; margin: auto; }
         body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; max-width: 980px; margin: auto; }
         header { margin-bottom: 1.5rem; }
         h1 { margin: 0 0 0.5rem 0; }
         .meta { color: #555; }
         .downloads { margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; }
         .file-list { list-style: none; padding: 0; margin: 0; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #f0f0f0; }
+        .file-info { display:flex; gap: 1rem; align-items:center; }
+        .file-name { font-weight: 600; }
         .file-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #f6f6f6; }
         .file-left { display:flex; gap: 1rem; align-items:center; max-width:70%; }
         .file-icon { width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; font-size:20px; border-radius:8px; background:#f3f4f6; }
@@ -28,14 +27,41 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to my website</h1>
-        <p class="meta">This is my personal site showcasing projects by Natural-Coding60.</p>
-    </header>
-
+<h1>Welcome to my website</h1>
     <main>
         <section class="downloads">
             <h2>Downloads</h2>
+            <p class="muted">Download project files directly from this site. Files are served statically from this repository (GitHub Pages).</p>
+
+            <ul class="file-list">
+                <li class="file-item">
+                    <div class="file-info">
+                        <div>
+                            <div class="file-name">Repository ZIP (main branch)</div>
+                            <div class="muted">Download a ZIP of the whole repository.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="download-btn" href="https://github.com/Natural-Coding60/Natural-Coding60.github.io/Web/archive/naltu.zip">Dowload Naltu</a>
+                    </div>
+                </li>
+
+                <li class="file-item">
+                    <div class="file-info">
+                        <div>
+                            <div class="file-name">Example file</div>
+                            <div class="muted">A small sample file stored in the repository (click to download).</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="download-btn" href="/Natural-Coding60.github.io/raw/main/assets/hello.txt" download>Download</a>
+                    </div>
+                </li>
+
+                <!-- Add more static files here. To add files, commit them under the assets/ directory and add entries below. -->
+            </ul>
+
+            <p class="muted" style="margin-top:0.75rem;">Note: Files linked from this page are static and hosted via GitHub — no server-side tracking is performed.</p>
             <p class="muted">Files located in the repository's <code>assets/</code> folder are shown below. Click a file or the Download button to fetch it.</p>
 
             <div id="downloadsArea">
