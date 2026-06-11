@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — Nexus</title>
+  <meta name="description" content="Official Nexus documentation. Get started, explore the API, and learn how to configure your build pipeline." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%236366F1'/><text y='23' x='5' font-size='20' font-family='monospace' fill='white'>N</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <div class="nav__logo-icon" aria-hidden="true">N</div>
+        Nexus
+      </a>
+      <div class="nav__links">
+        <a href="index.html"     class="nav__link">Home</a>
+        <a href="download.html"  class="nav__link">Downloads</a>
+        <a href="docs.html"      class="nav__link active">Docs</a>
+        <a href="changelog.html" class="nav__link">Changelog</a>
+        <a href="support.html"   class="nav__link">Support</a>
+      </div>
+      <div class="nav__actions">
+        <div class="nav__badge">24k</div>
+        <a href="download.html" class="btn-nav">Download</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav__mobile">
+    <a href="index.html"     class="nav__link">Home</a>
+    <a href="download.html"  class="nav__link">Downloads</a>
+    <a href="docs.html"      class="nav__link active">Docs</a>
+    <a href="changelog.html" class="nav__link">Changelog</a>
+    <a href="support.html"   class="nav__link">Support</a>
+  </div>
+
+  <main id="main" class="page">
+    <div class="container">
+
+      <!-- Docs header -->
+      <div style="padding:2.5rem 0 1.5rem">
+        <div class="search-bar" style="max-width:520px" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input type="search" placeholder="Search documentation…" aria-label="Search documentation" />
+          <kbd class="search-bar__kbd">⌘K</kbd>
+        </div>
+      </div>
+
+      <div class="docs-layout">
+
+        <!-- ── Sidebar ── -->
+        <aside class="sidebar" aria-label="Documentation navigation">
+          <nav>
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">Getting Started</div>
+              <a href="#introduction"   class="sidebar__link active"><span class="dot"></span> Introduction</a>
+              <a href="#installation"   class="sidebar__link"><span class="dot"></span> Installation</a>
+              <a href="#quickstart"     class="sidebar__link"><span class="dot"></span> Quick Start</a>
+              <a href="#configuration"  class="sidebar__link"><span class="dot"></span> Configuration</a>
+            </div>
+
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">Core Concepts</div>
+              <a href="#tasks"          class="sidebar__link"><span class="dot"></span> Tasks</a>
+              <a href="#task-graph"     class="sidebar__link"><span class="dot"></span> Task Graph</a>
+              <a href="#caching"        class="sidebar__link"><span class="dot"></span> Caching</a>
+              <a href="#monorepos"      class="sidebar__link"><span class="dot"></span> Monorepos</a>
+            </div>
+
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">CLI Reference</div>
+              <a href="#cli-init"       class="sidebar__link"><span class="dot"></span> nexus init</a>
+              <a href="#cli-build"      class="sidebar__link"><span class="dot"></span> nexus build</a>
+              <a href="#cli-dev"        class="sidebar__link"><span class="dot"></span> nexus dev</a>
+              <a href="#cli-test"       class="sidebar__link"><span class="dot"></span> nexus test</a>
+              <a href="#cli-deploy"     class="sidebar__link"><span class="dot"></span> nexus deploy</a>
+            </div>
+
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">Configuration</div>
+              <a href="#nexus-config"   class="sidebar__link"><span class="dot"></span> nexus.config.ts</a>
+              <a href="#env-vars"       class="sidebar__link"><span class="dot"></span> Environment Variables</a>
+              <a href="#plugins"        class="sidebar__link"><span class="dot"></span> Plugins</a>
+            </div>
+
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">Guides</div>
+              <a href="#ci-cd"          class="sidebar__link"><span class="dot"></span> CI/CD Integration</a>
+              <a href="#remote-cache"   class="sidebar__link"><span class="dot"></span> Remote Cache</a>
+              <a href="#migration"      class="sidebar__link"><span class="dot"></span> Migrating from Webpack</a>
+            </div>
+
+            <div class="sidebar__group">
+              <div class="sidebar__group-title">API Reference</div>
+              <a href="#api"            class="sidebar__link"><span class="dot"></span> Plugin API</a>
+              <a href="#hooks"          class="sidebar__link"><span class="dot"></span> Lifecycle Hooks</a>
+            </div>
+          </nav>
+        </aside>
+
+        <!-- ── Main content ── -->
+        <article class="docs-content" aria-label="Documentation content">
+
+          <h1 id="introduction">Introduction</h1>
+          <p>Welcome to the official Nexus documentation. Nexus is an open-source build system and developer platform designed to help teams build, test, and deploy modern software faster.</p>
+          <p>Whether you're a solo developer working on a single-repo project or part of a large team managing a complex monorepo, Nexus provides the tools to streamline your workflow and eliminate repetitive build work.</p>
+
+          <div class="callout callout--info">
+            <span class="callout__icon">💡</span>
+            <p><strong>New to Nexus?</strong> Start with the <a href="#quickstart">Quick Start guide</a> to get a project running in under 5 minutes.</p>
+          </div>
+
+          <!-- ─ Installation ─ -->
+          <h2 id="installation">Installation</h2>
+          <p>The recommended way to install Nexus is via npm. It's available as a single global CLI binary with no platform-specific dependencies.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Install Nexus CLI</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># npm (recommended)</span>
+<span class="tok-var">npm</span> install <span class="tok-op">-g</span> nexus-app
+
+<span class="tok-comment"># pnpm</span>
+<span class="tok-var">pnpm</span> add <span class="tok-op">-g</span> nexus-app
+
+<span class="tok-comment"># homebrew (macOS / Linux)</span>
+<span class="tok-var">brew</span> install nexus-app</code></div>
+          </div>
+
+          <p>Verify the installation by checking the version:</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Verify</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-var">nexus</span> <span class="tok-op">--version</span>
+<span class="tok-comment"># nexus/3.0.4 darwin-arm64 node-v20.11.0</span></code></div>
+          </div>
+
+          <!-- ─ Quick Start ─ -->
+          <h2 id="quickstart">Quick Start</h2>
+          <p>Creating a new project is a single command. Nexus will prompt you to choose a template, set up your project, and install dependencies automatically.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Create a new project</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Interactive</span>
+<span class="tok-var">nexus</span> init
+
+<span class="tok-comment"># With template</span>
+<span class="tok-var">nexus</span> init my-app <span class="tok-op">--template</span> react-ts
+
+<span class="tok-comment"># From existing repo</span>
+<span class="tok-var">cd</span> my-existing-project
+<span class="tok-var">nexus</span> init <span class="tok-op">--detect</span></code></div>
+          </div>
+
+          <p>Once initialized, start the development server:</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Start dev server</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-var">cd</span> my-app
+<span class="tok-var">nexus</span> dev
+
+<span class="tok-comment"># Output:</span>
+<span class="tok-comment"># ⚡ nexus v3.0.4</span>
+<span class="tok-comment"># ✓  Ready in 380ms</span>
+<span class="tok-comment"># ➜  http://localhost:3000</span></code></div>
+          </div>
+
+          <!-- ─ Configuration ─ -->
+          <h2 id="configuration">Configuration</h2>
+          <p>Nexus is zero-config by default, but you can customize it via a <code>nexus.config.ts</code> file in your project root.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">nexus.config.ts</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-keyword">import</span> { <span class="tok-var">defineConfig</span> } <span class="tok-keyword">from</span> <span class="tok-string">'nexus-app'</span>;
+
+<span class="tok-keyword">export default</span> <span class="tok-fn">defineConfig</span>({
+  <span class="tok-prop">build</span>: {
+    <span class="tok-prop">outDir</span>: <span class="tok-string">'dist'</span>,
+    <span class="tok-prop">target</span>: <span class="tok-string">'esnext'</span>,
+    <span class="tok-prop">minify</span>: <span class="tok-keyword">true</span>,
+    <span class="tok-prop">sourcemap</span>: <span class="tok-keyword">true</span>,
+  },
+  <span class="tok-prop">dev</span>: {
+    <span class="tok-prop">port</span>: <span class="tok-number">3000</span>,
+    <span class="tok-prop">hmr</span>: <span class="tok-keyword">true</span>,
+    <span class="tok-prop">open</span>: <span class="tok-keyword">false</span>,
+  },
+  <span class="tok-prop">cache</span>: {
+    <span class="tok-prop">remote</span>: <span class="tok-keyword">true</span>, <span class="tok-comment">// Requires Pro</span>
+    <span class="tok-prop">local</span>: <span class="tok-string">'~/.nexus/cache'</span>,
+  },
+  <span class="tok-prop">plugins</span>: [
+    <span class="tok-fn">reactPlugin</span>(),
+    <span class="tok-fn">typeScriptPlugin</span>(),
+  ],
+});</code></div>
+          </div>
+
+          <!-- ─ Tasks ─ -->
+          <h2 id="tasks">Tasks</h2>
+          <p>Tasks are the atomic units of work in Nexus. Each task is a shell command with optional dependencies, inputs, and outputs declared in your <code>nexus.config.ts</code>.</p>
+          <p>Declaring inputs and outputs allows Nexus to cache task results and skip re-execution when nothing has changed.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Defining tasks</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-keyword">export default</span> <span class="tok-fn">defineConfig</span>({
+  <span class="tok-prop">tasks</span>: {
+    <span class="tok-prop">build</span>: {
+      <span class="tok-prop">command</span>: <span class="tok-string">'tsc &amp;&amp; vite build'</span>,
+      <span class="tok-prop">inputs</span>:  [<span class="tok-string">'src/**'</span>, <span class="tok-string">'tsconfig.json'</span>],
+      <span class="tok-prop">outputs</span>: [<span class="tok-string">'dist/**'</span>],
+      <span class="tok-prop">cache</span>:   <span class="tok-keyword">true</span>,
+    },
+    <span class="tok-prop">test</span>: {
+      <span class="tok-prop">command</span>:  <span class="tok-string">'vitest run'</span>,
+      <span class="tok-prop">dependsOn</span>: [<span class="tok-string">'build'</span>],
+      <span class="tok-prop">inputs</span>:  [<span class="tok-string">'src/**'</span>, <span class="tok-string">'tests/**'</span>],
+    },
+    <span class="tok-prop">deploy</span>: {
+      <span class="tok-prop">command</span>:   <span class="tok-string">'./scripts/deploy.sh'</span>,
+      <span class="tok-prop">dependsOn</span>: [<span class="tok-string">'build'</span>, <span class="tok-string">'test'</span>],
+    },
+  },
+});</code></div>
+          </div>
+
+          <!-- ─ Task Graph ─ -->
+          <h2 id="task-graph">Task Graph</h2>
+          <p>Nexus builds a directed acyclic graph (DAG) of your tasks based on their <code>dependsOn</code> declarations. It executes tasks in topological order and runs independent tasks in parallel whenever possible.</p>
+          <p>You can visualize your task graph at any time:</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Visualize</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Open task graph in browser</span>
+<span class="tok-var">nexus</span> graph
+
+<span class="tok-comment"># Output to SVG</span>
+<span class="tok-var">nexus</span> graph <span class="tok-op">--output</span> graph.svg</code></div>
+          </div>
+
+          <!-- ─ Caching ─ -->
+          <h2 id="caching">Caching</h2>
+          <p>Nexus uses a content-addressable cache based on a hash of a task's inputs, environment variables, and the Nexus version. If the hash matches a cached result, the task is replayed from cache instantly.</p>
+
+          <div class="callout callout--success">
+            <span class="callout__icon">✓</span>
+            <p><strong>Cache hit rate in the wild:</strong> Teams with well-declared task inputs/outputs typically see 70–95% cache hit rates in CI, reducing pipeline time by 4–10×.</p>
+          </div>
+
+          <h3>Local cache</h3>
+          <p>Local cache is stored at <code>~/.nexus/cache</code> by default. You can change this location in your config. The local cache is shared across all projects on the machine.</p>
+
+          <h3>Remote cache</h3>
+          <p>Remote cache (Nexus Pro) allows your entire team and CI runners to share a single cache. Artifacts are stored in our cloud (or your own S3-compatible bucket) and fetched on demand.</p>
+
+          <!-- ─ Monorepos ─ -->
+          <h2 id="monorepos">Monorepos</h2>
+          <p>Nexus has first-class support for monorepos using npm workspaces, yarn workspaces, or pnpm. It automatically discovers packages and builds a cross-package task graph.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Monorepo workspace config</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment">// nexus.config.ts (root)</span>
+<span class="tok-keyword">export default</span> <span class="tok-fn">defineConfig</span>({
+  <span class="tok-prop">workspaces</span>: {
+    <span class="tok-prop">packages</span>: [<span class="tok-string">'packages/*'</span>, <span class="tok-string">'apps/*'</span>],
+    <span class="tok-prop">tasks</span>: {
+      <span class="tok-prop">build</span>: { <span class="tok-prop">dependsOn</span>: [<span class="tok-string">'^build'</span>] }, <span class="tok-comment">// ^ means deps first</span>
+      <span class="tok-prop">test</span>:  { <span class="tok-prop">dependsOn</span>: [<span class="tok-string">'^build'</span>] },
+    },
+  },
+});</code></div>
+          </div>
+
+          <p>To build only the packages affected by your latest changes:</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Affected packages</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Build only what changed since main</span>
+<span class="tok-var">nexus</span> build <span class="tok-op">--affected</span> <span class="tok-op">--base</span>=main
+
+<span class="tok-comment"># Print affected packages (dry run)</span>
+<span class="tok-var">nexus</span> affected <span class="tok-op">--base</span>=main</code></div>
+          </div>
+
+          <!-- ─ CLI Reference ─ -->
+          <h2 id="cli-init">nexus init</h2>
+          <p>Initializes a new Nexus project or adds Nexus to an existing project.</p>
+
+          <div class="table-wrapper" style="margin-bottom:1.5rem">
+            <table>
+              <caption class="sr-only">nexus init flags</caption>
+              <thead><tr><th>Flag</th><th>Default</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td class="text-mono">--template &lt;name&gt;</td><td>interactive</td><td>Starter template to use</td></tr>
+                <tr><td class="text-mono">--detect</td><td>false</td><td>Auto-detect existing framework</td></tr>
+                <tr><td class="text-mono">--no-install</td><td>false</td><td>Skip dependency installation</td></tr>
+                <tr><td class="text-mono">--git</td><td>true</td><td>Initialize a git repository</td></tr>
+                <tr><td class="text-mono">--package-manager</td><td>auto</td><td>npm, pnpm, or yarn</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="cli-build">nexus build</h2>
+          <p>Runs the build task (or a custom task) for the project. Uses the local cache by default.</p>
+
+          <div class="table-wrapper" style="margin-bottom:1.5rem">
+            <table>
+              <caption class="sr-only">nexus build flags</caption>
+              <thead><tr><th>Flag</th><th>Default</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td class="text-mono">--affected</td><td>false</td><td>Only build affected packages</td></tr>
+                <tr><td class="text-mono">--no-cache</td><td>false</td><td>Skip the cache entirely</td></tr>
+                <tr><td class="text-mono">--remote</td><td>false</td><td>Use remote cache (Pro)</td></tr>
+                <tr><td class="text-mono">--concurrency &lt;n&gt;</td><td>CPU count</td><td>Max parallel tasks</td></tr>
+                <tr><td class="text-mono">--verbose</td><td>false</td><td>Print full task output</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="cli-dev">nexus dev</h2>
+          <p>Starts a local development server with hot module replacement enabled.</p>
+
+          <h2 id="cli-test">nexus test</h2>
+          <p>Runs your test suite. Supports Jest, Vitest, Mocha, and any custom test runner declared in your config.</p>
+
+          <h2 id="cli-deploy">nexus deploy</h2>
+          <p>Builds and deploys your application. Target is inferred from your config or can be specified explicitly.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Deploy examples</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Deploy to configured target</span>
+<span class="tok-var">nexus</span> deploy
+
+<span class="tok-comment"># Deploy to Vercel</span>
+<span class="tok-var">nexus</span> deploy <span class="tok-op">--target</span> vercel
+
+<span class="tok-comment"># Deploy to custom server</span>
+<span class="tok-var">nexus</span> deploy <span class="tok-op">--target</span> ssh <span class="tok-op">--host</span> user@my-server.com</code></div>
+          </div>
+
+          <!-- ─ Config File ─ -->
+          <h2 id="nexus-config">nexus.config.ts — Full Reference</h2>
+          <p>All available top-level configuration keys are listed below. Every key is optional; Nexus will infer sensible defaults for everything not declared.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Full config skeleton</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-keyword">import</span> { <span class="tok-var">defineConfig</span> } <span class="tok-keyword">from</span> <span class="tok-string">'nexus-app'</span>;
+
+<span class="tok-keyword">export default</span> <span class="tok-fn">defineConfig</span>({
+  <span class="tok-prop">root</span>:    <span class="tok-string">'.'</span>,
+  <span class="tok-prop">srcDir</span>:  <span class="tok-string">'src'</span>,
+  <span class="tok-prop">outDir</span>:  <span class="tok-string">'dist'</span>,
+
+  <span class="tok-prop">build</span>: {
+    <span class="tok-prop">target</span>:   <span class="tok-string">'esnext'</span>,
+    <span class="tok-prop">minify</span>:   <span class="tok-keyword">true</span>,
+    <span class="tok-prop">sourcemap</span>: <span class="tok-string">'inline'</span>,
+    <span class="tok-prop">splitting</span>: <span class="tok-keyword">true</span>,
+    <span class="tok-prop">treeshake</span>: <span class="tok-keyword">true</span>,
+  },
+
+  <span class="tok-prop">dev</span>: {
+    <span class="tok-prop">port</span>: <span class="tok-number">3000</span>,
+    <span class="tok-prop">https</span>: <span class="tok-keyword">false</span>,
+    <span class="tok-prop">hmr</span>: <span class="tok-keyword">true</span>,
+    <span class="tok-prop">proxy</span>: {
+      <span class="tok-string">'/api'</span>: <span class="tok-string">'http://localhost:8080'</span>,
+    },
+  },
+
+  <span class="tok-prop">test</span>: {
+    <span class="tok-prop">runner</span>: <span class="tok-string">'vitest'</span>,
+    <span class="tok-prop">coverage</span>: <span class="tok-keyword">true</span>,
+    <span class="tok-prop">threshold</span>: <span class="tok-number">80</span>,
+  },
+
+  <span class="tok-prop">cache</span>: {
+    <span class="tok-prop">local</span>: <span class="tok-string">'~/.nexus/cache'</span>,
+    <span class="tok-prop">remote</span>: <span class="tok-keyword">false</span>,
+    <span class="tok-prop">ttl</span>: <span class="tok-string">'7d'</span>,
+  },
+
+  <span class="tok-prop">plugins</span>: [],
+});</code></div>
+          </div>
+
+          <!-- ─ Environment Variables ─ -->
+          <h2 id="env-vars">Environment Variables</h2>
+          <p>Nexus reads <code>.env</code>, <code>.env.local</code>, and <code>.env.&lt;mode&gt;</code> files. Variables prefixed with <code>NEXUS_PUBLIC_</code> are exposed to the client-side bundle.</p>
+
+          <div class="table-wrapper">
+            <table>
+              <caption class="sr-only">Built-in Nexus environment variables</caption>
+              <thead><tr><th>Variable</th><th>Description</th></tr></thead>
+              <tbody>
+                <tr><td class="text-mono text-accent">NEXUS_MODE</td><td>development, production, or test</td></tr>
+                <tr><td class="text-mono text-accent">NEXUS_TOKEN</td><td>Authentication token for remote cache (Pro)</td></tr>
+                <tr><td class="text-mono text-accent">NEXUS_CACHE_URL</td><td>Custom remote cache endpoint</td></tr>
+                <tr><td class="text-mono text-accent">NEXUS_CONCURRENCY</td><td>Override max parallel tasks</td></tr>
+                <tr><td class="text-mono text-accent">NEXUS_LOG_LEVEL</td><td>silent, info, warn, debug</td></tr>
+                <tr><td class="text-mono text-accent">NEXUS_NO_COLOR</td><td>Disable color output (CI friendly)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ─ Plugins ─ -->
+          <h2 id="plugins">Plugins</h2>
+          <p>Nexus's plugin system allows you to hook into the build lifecycle, transform files, add new CLI commands, and more. The community plugin registry contains over 800 plugins.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Using a plugin</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-keyword">import</span> { <span class="tok-var">reactPlugin</span> }  <span class="tok-keyword">from</span> <span class="tok-string">'@nexus/plugin-react'</span>;
+<span class="tok-keyword">import</span> { <span class="tok-var">sentryPlugin</span> } <span class="tok-keyword">from</span> <span class="tok-string">'nexus-plugin-sentry'</span>;
+
+<span class="tok-keyword">export default</span> <span class="tok-fn">defineConfig</span>({
+  <span class="tok-prop">plugins</span>: [
+    <span class="tok-fn">reactPlugin</span>({ <span class="tok-prop">jsxRuntime</span>: <span class="tok-string">'automatic'</span> }),
+    <span class="tok-fn">sentryPlugin</span>({ <span class="tok-prop">dsn</span>: <span class="tok-var">process</span>.<span class="tok-prop">env</span>.<span class="tok-var">SENTRY_DSN</span> }),
+  ],
+});</code></div>
+          </div>
+
+          <!-- ─ CI/CD ─ -->
+          <h2 id="ci-cd">CI/CD Integration</h2>
+          <p>Nexus works with any CI provider. Here are examples for the most common ones.</p>
+
+          <div class="tabs" style="margin-top:1.5rem">
+            <button class="tab-btn active" data-tab="gha">GitHub Actions</button>
+            <button class="tab-btn" data-tab="gitlabci">GitLab CI</button>
+            <button class="tab-btn" data-tab="circle">CircleCI</button>
+          </div>
+
+          <div data-panel="gha" class="tab-panel active">
+            <div class="code-block">
+              <div class="code-block__header">
+                <div class="code-block__dots">
+                  <span class="code-block__dot code-block__dot--red"></span>
+                  <span class="code-block__dot code-block__dot--yellow"></span>
+                  <span class="code-block__dot code-block__dot--green"></span>
+                </div>
+                <span class="code-block__title">.github/workflows/ci.yml</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <div class="code-block__body"><code><span class="tok-keyword">name</span>: <span class="tok-string">CI</span>
+<span class="tok-keyword">on</span>: [push, pull_request]
+
+<span class="tok-keyword">jobs</span>:
+  <span class="tok-prop">build</span>:
+    <span class="tok-prop">runs-on</span>: ubuntu-latest
+    <span class="tok-prop">steps</span>:
+      <span class="tok-keyword">- uses</span>: <span class="tok-string">actions/checkout@v4</span>
+      <span class="tok-keyword">- uses</span>: <span class="tok-string">actions/setup-node@v4</span>
+        <span class="tok-prop">with</span>: { <span class="tok-prop">node-version</span>: <span class="tok-string">'20'</span> }
+      <span class="tok-keyword">- uses</span>: <span class="tok-string">nexuscorp/setup-nexus@v3</span>
+      <span class="tok-keyword">- run</span>: <span class="tok-string">nexus build --affected --remote</span>
+        <span class="tok-prop">env</span>:
+          <span class="tok-prop">NEXUS_TOKEN</span>: ${{ secrets.NEXUS_TOKEN }}</code></div>
+            </div>
+          </div>
+
+          <div data-panel="gitlabci" class="tab-panel">
+            <div class="code-block">
+              <div class="code-block__header">
+                <div class="code-block__dots">
+                  <span class="code-block__dot code-block__dot--red"></span>
+                  <span class="code-block__dot code-block__dot--yellow"></span>
+                  <span class="code-block__dot code-block__dot--green"></span>
+                </div>
+                <span class="code-block__title">.gitlab-ci.yml</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <div class="code-block__body"><code><span class="tok-prop">image</span>: node:20
+
+<span class="tok-prop">stages</span>: [build, test]
+
+<span class="tok-prop">build</span>:
+  <span class="tok-prop">stage</span>: build
+  <span class="tok-prop">script</span>:
+    <span class="tok-keyword">-</span> npm install -g nexus-app
+    <span class="tok-keyword">-</span> nexus build --remote
+  <span class="tok-prop">variables</span>:
+    <span class="tok-prop">NEXUS_TOKEN</span>: $NEXUS_TOKEN</code></div>
+            </div>
+          </div>
+
+          <div data-panel="circle" class="tab-panel">
+            <div class="code-block">
+              <div class="code-block__header">
+                <div class="code-block__dots">
+                  <span class="code-block__dot code-block__dot--red"></span>
+                  <span class="code-block__dot code-block__dot--yellow"></span>
+                  <span class="code-block__dot code-block__dot--green"></span>
+                </div>
+                <span class="code-block__title">.circleci/config.yml</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <div class="code-block__body"><code><span class="tok-keyword">version</span>: <span class="tok-string">'2.1'</span>
+<span class="tok-keyword">jobs</span>:
+  <span class="tok-prop">build</span>:
+    <span class="tok-prop">docker</span>: [{ image: cimg/node:20.0 }]
+    <span class="tok-prop">steps</span>:
+      <span class="tok-keyword">- checkout</span>
+      <span class="tok-keyword">- run</span>: npm install -g nexus-app
+      <span class="tok-keyword">- run</span>: nexus build --remote</code></div>
+            </div>
+          </div>
+
+          <!-- ─ Plugin API ─ -->
+          <h2 id="api">Plugin API</h2>
+          <p>Plugins are functions that receive a Nexus context object and can register hooks, add resolvers, or extend the CLI.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Writing a plugin</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-keyword">import type</span> { <span class="tok-var">NexusPlugin</span> } <span class="tok-keyword">from</span> <span class="tok-string">'nexus-app'</span>;
+
+<span class="tok-keyword">export function</span> <span class="tok-fn">myPlugin</span>(options = {}): <span class="tok-var">NexusPlugin</span> {
+  <span class="tok-keyword">return</span> {
+    <span class="tok-prop">name</span>: <span class="tok-string">'my-plugin'</span>,
+
+    <span class="tok-fn">setup</span>(build) {
+      <span class="tok-comment">// Transform .txt files</span>
+      build.<span class="tok-fn">onLoad</span>({ filter: <span class="tok-string">/\.txt$/</span> }, <span class="tok-keyword">async</span> (args) =&gt; {
+        <span class="tok-keyword">const</span> text = <span class="tok-keyword">await</span> fs.<span class="tok-fn">readFile</span>(args.path, <span class="tok-string">'utf8'</span>);
+        <span class="tok-keyword">return</span> {
+          <span class="tok-prop">contents</span>: <span class="tok-string">`export default `</span> + JSON.<span class="tok-fn">stringify</span>(text),
+          <span class="tok-prop">loader</span>: <span class="tok-string">'js'</span>,
+        };
+      });
+    },
+  };
+}</code></div>
+          </div>
+
+          <h2 id="hooks">Lifecycle Hooks</h2>
+          <p>Nexus exposes hooks at each stage of the build pipeline. All hooks support async functions.</p>
+
+          <div class="table-wrapper">
+            <table>
+              <caption class="sr-only">Nexus lifecycle hooks</caption>
+              <thead><tr><th>Hook</th><th>When it runs</th></tr></thead>
+              <tbody>
+                <tr><td class="text-mono text-accent">onStart</td><td>Before any task begins</td></tr>
+                <tr><td class="text-mono text-accent">onLoad</td><td>When a module is resolved</td></tr>
+                <tr><td class="text-mono text-accent">onTransform</td><td>After a module is loaded, before bundling</td></tr>
+                <tr><td class="text-mono text-accent">onBundleEnd</td><td>After the bundle is written to disk</td></tr>
+                <tr><td class="text-mono text-accent">onTaskComplete</td><td>After each individual task completes</td></tr>
+                <tr><td class="text-mono text-accent">onEnd</td><td>After all tasks complete (success or failure)</td></tr>
+                <tr><td class="text-mono text-accent">onError</td><td>When any task throws an error</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- ─ Migration ─ -->
+          <h2 id="migration">Migrating from Webpack</h2>
+          <p>Nexus ships an automatic migration tool that reads your existing Webpack, Vite, or CRA configuration and produces an equivalent Nexus config with no manual intervention required for most projects.</p>
+
+          <div class="code-block">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Migrate</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Auto-detect and migrate</span>
+<span class="tok-var">nexus</span> migrate
+
+<span class="tok-comment"># From a specific tool</span>
+<span class="tok-var">nexus</span> migrate <span class="tok-op">--from</span> webpack
+<span class="tok-var">nexus</span> migrate <span class="tok-op">--from</span> vite
+<span class="tok-var">nexus</span> migrate <span class="tok-op">--from</span> cra</code></div>
+          </div>
+
+          <div class="callout callout--warn" style="margin-top:1.5rem">
+            <span class="callout__icon">⚠️</span>
+            <p>Always commit your existing config to version control before running <code>nexus migrate</code>. Review the generated <code>nexus.config.ts</code> before deleting your old config files.</p>
+          </div>
+
+          <!-- bottom nav -->
+          <div style="display:flex;justify-content:space-between;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border)">
+            <a href="index.html" class="btn btn--ghost btn--sm">← Back to Home</a>
+            <a href="download.html" class="btn btn--primary btn--sm">Download Nexus →</a>
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:.75rem;display:inline-flex">
+            <div class="nav__logo-icon" aria-hidden="true">N</div>
+            Nexus
+          </a>
+          <p>The open-source developer platform for modern applications.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Product</div>
+          <nav class="footer__links">
+            <a href="download.html">Downloads</a>
+            <a href="changelog.html">Changelog</a>
+            <a href="docs.html">Documentation</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Community</div>
+          <nav class="footer__links">
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://discord.com" target="_blank" rel="noopener">Discord</a>
+            <a href="support.html">Support</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Legal</div>
+          <nav class="footer__links">
+            <a href="#">MIT License</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Nexus Contributors. MIT License.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

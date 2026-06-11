@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloads — Nexus</title>
+  <meta name="description" content="Download Nexus for macOS, Windows, and Linux. Available as CLI, desktop app, and VS Code extension." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%236366F1'/><text y='23' x='5' font-size='20' font-family='monospace' fill='white'>N</text></svg>" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">
+        <div class="nav__logo-icon" aria-hidden="true">N</div>
+        Nexus
+      </a>
+      <div class="nav__links">
+        <a href="index.html"     class="nav__link">Home</a>
+        <a href="download.html"  class="nav__link active">Downloads</a>
+        <a href="docs.html"      class="nav__link">Docs</a>
+        <a href="changelog.html" class="nav__link">Changelog</a>
+        <a href="support.html"   class="nav__link">Support</a>
+      </div>
+      <div class="nav__actions">
+        <div class="nav__badge">24k</div>
+        <a href="download.html" class="btn-nav">Download</a>
+      </div>
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav__mobile">
+    <a href="index.html"     class="nav__link">Home</a>
+    <a href="download.html"  class="nav__link active">Downloads</a>
+    <a href="docs.html"      class="nav__link">Docs</a>
+    <a href="changelog.html" class="nav__link">Changelog</a>
+    <a href="support.html"   class="nav__link">Support</a>
+  </div>
+
+  <main id="main" class="page">
+
+    <!-- Header -->
+    <section class="section section--sm" aria-labelledby="dl-title">
+      <div class="container">
+        <header class="section__header section__header--center" style="margin-bottom:1.5rem">
+          <p class="section__eyebrow">Downloads</p>
+          <h1 class="section__title" id="dl-title">Get Nexus</h1>
+          <p class="section__subtitle">
+            Available for every major platform. Free, open-source, and MIT licensed.
+            Current stable version: <strong class="text-accent">v3.0.4</strong>
+          </p>
+        </header>
+
+        <!-- Version selector -->
+        <div style="display:flex;justify-content:center;margin-bottom:2.5rem;gap:1rem;flex-wrap:wrap;align-items:center">
+          <label for="version-picker" style="font-size:.85rem;color:var(--text-secondary);font-weight:600">Version:</label>
+          <select id="version-picker" class="form-select" style="width:auto;min-width:180px">
+            <option value="stable">v3.0.4 — Stable (Latest)</option>
+            <option value="lts">v2.8.12 — LTS</option>
+            <option value="beta">v3.1.0-beta.2 — Beta</option>
+          </select>
+          <a href="changelog.html" class="btn btn--ghost btn--sm">View changelog →</a>
+        </div>
+
+        <!-- Version: Stable (shown by default) -->
+        <div data-version="stable">
+          <!-- OS Cards -->
+          <div class="grid-3 stagger" style="margin-bottom:3rem">
+
+            <!-- macOS -->
+            <div class="dl-card dl-card--featured">
+              <div class="dl-card__os-icon" aria-hidden="true">🍎</div>
+              <div class="dl-card__name">macOS</div>
+              <div class="dl-card__meta">
+                <span>v3.0.4</span>
+                <span>Apple Silicon + Intel</span>
+              </div>
+              <p class="dl-card__desc">
+                Native universal binary for macOS 12 Monterey and later. Includes Nexus CLI and the desktop GUI app.
+              </p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--primary" data-download="Nexus-3.0.4-mac-universal.dmg">
+                  ⬇ Download .dmg (Universal)
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="Nexus-3.0.4-mac-arm64.dmg">
+                  ⬇ Apple Silicon only
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="Nexus-3.0.4-mac-x64.dmg">
+                  ⬇ Intel (x86_64)
+                </a>
+              </div>
+            </div>
+
+            <!-- Windows -->
+            <div class="dl-card">
+              <div class="dl-card__os-icon" aria-hidden="true">🪟</div>
+              <div class="dl-card__name">Windows</div>
+              <div class="dl-card__meta">
+                <span>v3.0.4</span>
+                <span>Windows 10 / 11</span>
+              </div>
+              <p class="dl-card__desc">
+                MSI installer and portable ZIP for Windows 10 (1903+) and Windows 11. 64-bit and ARM64 available.
+              </p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--primary" data-download="Nexus-3.0.4-win-x64-setup.msi">
+                  ⬇ Download .msi (64-bit)
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="Nexus-3.0.4-win-arm64.msi">
+                  ⬇ ARM64
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="Nexus-3.0.4-win-portable.zip">
+                  ⬇ Portable .zip
+                </a>
+              </div>
+            </div>
+
+            <!-- Linux -->
+            <div class="dl-card">
+              <div class="dl-card__os-icon" aria-hidden="true">🐧</div>
+              <div class="dl-card__name">Linux</div>
+              <div class="dl-card__meta">
+                <span>v3.0.4</span>
+                <span>x86_64 · ARM64</span>
+              </div>
+              <p class="dl-card__desc">
+                Available as .deb, .rpm, AppImage, and tarball. Supports Debian, Ubuntu, Fedora, Arch, and more.
+              </p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--primary" data-download="nexus-3.0.4-amd64.deb">
+                  ⬇ .deb (Debian/Ubuntu)
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="nexus-3.0.4.x86_64.rpm">
+                  ⬇ .rpm (Fedora/RHEL)
+                </a>
+                <a href="#" class="btn btn--ghost btn--sm" data-download="nexus-3.0.4-x86_64.AppImage">
+                  ⬇ AppImage
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version: LTS (hidden by default) -->
+        <div data-version="lts" style="display:none">
+          <div class="callout callout--warn" style="margin-bottom:2rem">
+            <span class="callout__icon">⚠️</span>
+            <p><strong>Long-Term Support release.</strong> v2.8.x receives security patches until December 2026. Consider upgrading to v3 for new features.</p>
+          </div>
+          <div class="grid-3 stagger">
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🍎</div>
+              <div class="dl-card__name">macOS LTS</div>
+              <div class="dl-card__meta"><span>v2.8.12</span><span>Universal</span></div>
+              <p class="dl-card__desc">LTS build for macOS 11+. Security patches only.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--secondary" data-download="Nexus-2.8.12-mac.dmg">⬇ Download .dmg</a>
+              </div>
+            </div>
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🪟</div>
+              <div class="dl-card__name">Windows LTS</div>
+              <div class="dl-card__meta"><span>v2.8.12</span><span>64-bit</span></div>
+              <p class="dl-card__desc">LTS build for Windows 10+. Security patches only.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--secondary" data-download="Nexus-2.8.12-win.msi">⬇ Download .msi</a>
+              </div>
+            </div>
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🐧</div>
+              <div class="dl-card__name">Linux LTS</div>
+              <div class="dl-card__meta"><span>v2.8.12</span><span>amd64</span></div>
+              <p class="dl-card__desc">LTS build for all major Linux distros.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--secondary" data-download="nexus-2.8.12-amd64.deb">⬇ Download .deb</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version: Beta (hidden by default) -->
+        <div data-version="beta" style="display:none">
+          <div class="callout callout--warn" style="margin-bottom:2rem">
+            <span class="callout__icon">🧪</span>
+            <p><strong>Beta release.</strong> This version may contain bugs. Not recommended for production use. <a href="support.html" style="color:var(--amber)">Report issues</a></p>
+          </div>
+          <div class="grid-3 stagger">
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🍎</div>
+              <div class="dl-card__name">macOS Beta</div>
+              <div class="dl-card__meta"><span>v3.1.0-beta.2</span><span>Universal</span></div>
+              <p class="dl-card__desc">Preview of upcoming v3.1 features including the new plugin API.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--amber" data-download="Nexus-3.1.0-beta.2-mac.dmg">⬇ Download Beta .dmg</a>
+              </div>
+            </div>
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🪟</div>
+              <div class="dl-card__name">Windows Beta</div>
+              <div class="dl-card__meta"><span>v3.1.0-beta.2</span><span>64-bit</span></div>
+              <p class="dl-card__desc">Beta installer for Windows 10/11.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--amber" data-download="Nexus-3.1.0-beta.2-win.msi">⬇ Download Beta .msi</a>
+              </div>
+            </div>
+            <div class="dl-card">
+              <div class="dl-card__os-icon">🐧</div>
+              <div class="dl-card__name">Linux Beta</div>
+              <div class="dl-card__meta"><span>v3.1.0-beta.2</span><span>amd64</span></div>
+              <p class="dl-card__desc">Beta .deb for Ubuntu/Debian.</p>
+              <div class="dl-card__actions">
+                <a href="#" class="btn btn--amber" data-download="nexus-3.1.0-beta.2-amd64.deb">⬇ Download Beta .deb</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Package Managers ── -->
+    <section class="section" aria-labelledby="pkgmgr-title">
+      <div class="container">
+        <header class="section__header">
+          <p class="section__eyebrow">Package Managers</p>
+          <h2 class="section__title" id="pkgmgr-title">Install from the command line</h2>
+          <p class="section__subtitle">Prefer to install from your package manager? We're in all the major ones.</p>
+        </header>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="npm">npm / pnpm / yarn</button>
+          <button class="tab-btn" data-tab="brew">Homebrew</button>
+          <button class="tab-btn" data-tab="winget">winget</button>
+          <button class="tab-btn" data-tab="apt">apt</button>
+          <button class="tab-btn" data-tab="snap">Snap</button>
+        </div>
+
+        <div data-panel="npm" class="tab-panel active">
+          <div class="grid-2">
+            <div class="code-block">
+              <div class="code-block__header">
+                <div class="code-block__dots">
+                  <span class="code-block__dot code-block__dot--red"></span>
+                  <span class="code-block__dot code-block__dot--yellow"></span>
+                  <span class="code-block__dot code-block__dot--green"></span>
+                </div>
+                <span class="code-block__title">npm</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <div class="code-block__body"><code><span class="tok-comment"># Install globally</span>
+<span class="tok-var">npm</span> install <span class="tok-op">-g</span> nexus-app
+
+<span class="tok-comment"># Verify installation</span>
+<span class="tok-var">nexus</span> <span class="tok-op">--version</span></code></div>
+            </div>
+            <div class="code-block">
+              <div class="code-block__header">
+                <div class="code-block__dots">
+                  <span class="code-block__dot code-block__dot--red"></span>
+                  <span class="code-block__dot code-block__dot--yellow"></span>
+                  <span class="code-block__dot code-block__dot--green"></span>
+                </div>
+                <span class="code-block__title">pnpm / yarn</span>
+                <button class="code-block__copy">Copy</button>
+              </div>
+              <div class="code-block__body"><code><span class="tok-comment"># pnpm</span>
+<span class="tok-var">pnpm</span> add <span class="tok-op">-g</span> nexus-app
+
+<span class="tok-comment"># yarn</span>
+<span class="tok-var">yarn</span> global add nexus-app</code></div>
+            </div>
+          </div>
+        </div>
+
+        <div data-panel="brew" class="tab-panel">
+          <div class="code-block" style="max-width:560px">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Homebrew (macOS / Linux)</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Add tap</span>
+<span class="tok-var">brew</span> tap nexuscorp/tap
+
+<span class="tok-comment"># Install</span>
+<span class="tok-var">brew</span> install nexus-app
+
+<span class="tok-comment"># Upgrade later</span>
+<span class="tok-var">brew</span> upgrade nexus-app</code></div>
+          </div>
+        </div>
+
+        <div data-panel="winget" class="tab-panel">
+          <div class="code-block" style="max-width:560px">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Windows Package Manager (winget)</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Install</span>
+<span class="tok-var">winget</span> install NexusCorp.Nexus
+
+<span class="tok-comment"># Upgrade later</span>
+<span class="tok-var">winget</span> upgrade NexusCorp.Nexus</code></div>
+          </div>
+        </div>
+
+        <div data-panel="apt" class="tab-panel">
+          <div class="code-block" style="max-width:640px">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">apt (Debian / Ubuntu)</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-comment"># Add GPG key</span>
+<span class="tok-var">curl</span> <span class="tok-op">-fsSL</span> https://pkg.nexus.dev/gpg.key | sudo gpg <span class="tok-op">--dearmor</span> <span class="tok-op">-o</span> /etc/apt/keyrings/nexus.gpg
+
+<span class="tok-comment"># Add repository</span>
+<span class="tok-var">echo</span> <span class="tok-string">"deb [signed-by=/etc/apt/keyrings/nexus.gpg] https://pkg.nexus.dev/apt stable main"</span> | sudo tee /etc/apt/sources.list.d/nexus.list
+
+<span class="tok-comment"># Install</span>
+<span class="tok-var">sudo</span> apt update &amp;&amp; sudo apt install nexus-app</code></div>
+          </div>
+        </div>
+
+        <div data-panel="snap" class="tab-panel">
+          <div class="code-block" style="max-width:480px">
+            <div class="code-block__header">
+              <div class="code-block__dots">
+                <span class="code-block__dot code-block__dot--red"></span>
+                <span class="code-block__dot code-block__dot--yellow"></span>
+                <span class="code-block__dot code-block__dot--green"></span>
+              </div>
+              <span class="code-block__title">Snap</span>
+              <button class="code-block__copy">Copy</button>
+            </div>
+            <div class="code-block__body"><code><span class="tok-var">sudo</span> snap install nexus-app --classic</code></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Apps / Extensions ── -->
+    <section class="section" aria-labelledby="apps-title">
+      <div class="container">
+        <header class="section__header section__header--center">
+          <p class="section__eyebrow">Apps &amp; Extensions</p>
+          <h2 class="section__title" id="apps-title">More ways to use Nexus</h2>
+          <p class="section__subtitle">Beyond the CLI — desktop GUI, editor extensions, and mobile companion apps.</p>
+        </header>
+
+        <div class="grid-2 stagger" style="margin-bottom:2rem">
+
+          <!-- Desktop GUI -->
+          <div class="dl-card">
+            <div class="dl-card__os-icon">🖥️</div>
+            <div class="dl-card__name">Nexus Desktop</div>
+            <div class="dl-card__meta">
+              <span class="badge badge--green">Stable</span>
+              <span>v3.0.4</span>
+              <span>macOS · Windows · Linux</span>
+            </div>
+            <p class="dl-card__desc">
+              A full-featured graphical interface for Nexus. View your task graph, monitor builds in real-time, browse logs, and manage plugins — all without touching the terminal.
+            </p>
+            <ul class="req-list mb-3" aria-label="Desktop app requirements">
+              <li class="req-item"><span class="req-icon" aria-hidden="true">✅</span>macOS 12+, Windows 10+, Ubuntu 20.04+</li>
+              <li class="req-item"><span class="req-icon" aria-hidden="true">✅</span>4 GB RAM minimum</li>
+              <li class="req-item"><span class="req-icon" aria-hidden="true">✅</span>200 MB disk space</li>
+            </ul>
+            <div class="dl-card__actions">
+              <a href="#" class="btn btn--primary" data-download="NexusDesktop-3.0.4-mac.dmg">⬇ macOS</a>
+              <a href="#" class="btn btn--secondary" data-download="NexusDesktop-3.0.4-win.exe">⬇ Windows</a>
+              <a href="#" class="btn btn--secondary" data-download="NexusDesktop-3.0.4-linux.AppImage">⬇ Linux</a>
+            </div>
+          </div>
+
+          <!-- VS Code Extension -->
+          <div class="dl-card dl-card--featured">
+            <div class="dl-card__os-icon">💻</div>
+            <div class="dl-card__name">VS Code Extension</div>
+            <div class="dl-card__meta">
+              <span class="badge badge--indigo">Editor</span>
+              <span>v2.4.1</span>
+              <span>3.2M installs</span>
+            </div>
+            <p class="dl-card__desc">
+              The official Nexus extension for Visual Studio Code. Get inline build status, one-click task execution, integrated log viewer, and AI-powered config suggestions.
+            </p>
+            <ul class="req-list mb-3">
+              <li class="req-item"><span class="req-icon" aria-hidden="true">✅</span>VS Code 1.85+</li>
+              <li class="req-item"><span class="req-icon" aria-hidden="true">✅</span>Nexus CLI installed</li>
+            </ul>
+            <div class="dl-card__actions">
+              <a href="https://marketplace.visualstudio.com" target="_blank" rel="noopener" class="btn btn--primary">
+                Open VS Marketplace ↗
+              </a>
+              <a href="#" class="btn btn--ghost btn--sm" data-download="nexus-vscode-2.4.1.vsix">⬇ .vsix (offline)</a>
+            </div>
+          </div>
+
+          <!-- JetBrains Plugin -->
+          <div class="dl-card">
+            <div class="dl-card__os-icon">🧠</div>
+            <div class="dl-card__name">JetBrains Plugin</div>
+            <div class="dl-card__meta">
+              <span class="badge badge--indigo">Editor</span>
+              <span>v1.9.0</span>
+              <span>IntelliJ · WebStorm · Rider</span>
+            </div>
+            <p class="dl-card__desc">
+              Nexus integration for the JetBrains IDE family. Supports IntelliJ IDEA, WebStorm, GoLand, and Rider with a full-featured tool window.
+            </p>
+            <div class="dl-card__actions">
+              <a href="https://plugins.jetbrains.com" target="_blank" rel="noopener" class="btn btn--secondary">JetBrains Marketplace ↗</a>
+            </div>
+          </div>
+
+          <!-- Mobile Companion -->
+          <div class="dl-card">
+            <div class="dl-card__os-icon">📱</div>
+            <div class="dl-card__name">Mobile Companion</div>
+            <div class="dl-card__meta">
+              <span class="badge badge--cyan">Mobile</span>
+              <span>iOS &amp; Android</span>
+            </div>
+            <p class="dl-card__desc">
+              Monitor your builds on the go. Get push notifications for build status, browse logs, approve deployments, and check analytics from your iPhone or Android device.
+            </p>
+            <ul class="req-list mb-3">
+              <li class="req-item"><span class="req-icon" aria-hidden="true">🍎</span>iOS 16+ (iPhone &amp; iPad)</li>
+              <li class="req-item"><span class="req-icon" aria-hidden="true">🤖</span>Android 10+ (API 29)</li>
+              <li class="req-item"><span class="req-icon" aria-hidden="true">⚠️</span>Requires Nexus Pro account</li>
+            </ul>
+            <div class="dl-card__actions">
+              <a href="https://apps.apple.com" target="_blank" rel="noopener" class="btn btn--primary">🍎 App Store</a>
+              <a href="https://play.google.com" target="_blank" rel="noopener" class="btn btn--secondary">🤖 Google Play</a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Docker -->
+        <div class="card" style="margin-bottom:1.5rem">
+          <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap">
+            <div style="font-size:2.5rem" aria-hidden="true">🐳</div>
+            <div style="flex:1;min-width:240px">
+              <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.35rem">Docker Image</h3>
+              <p style="font-size:.875rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.65">
+                Run Nexus in any CI/CD environment with our official Docker image. Available on Docker Hub and GitHub Container Registry.
+              </p>
+              <div class="code-block">
+                <div class="code-block__header">
+                  <div class="code-block__dots">
+                    <span class="code-block__dot code-block__dot--red"></span>
+                    <span class="code-block__dot code-block__dot--yellow"></span>
+                    <span class="code-block__dot code-block__dot--green"></span>
+                  </div>
+                  <span class="code-block__title">Docker</span>
+                  <button class="code-block__copy">Copy</button>
+                </div>
+                <div class="code-block__body"><code><span class="tok-comment"># Pull latest</span>
+<span class="tok-var">docker</span> pull nexuscorp/nexus:latest
+
+<span class="tok-comment"># Run a build</span>
+<span class="tok-var">docker</span> run <span class="tok-op">--rm</span> <span class="tok-op">-v</span> <span class="tok-string">$(pwd):/workspace</span> nexuscorp/nexus:latest build</code></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GitHub Action -->
+        <div class="card">
+          <div style="display:flex;align-items:flex-start;gap:1.5rem;flex-wrap:wrap">
+            <div style="font-size:2.5rem" aria-hidden="true">⚙️</div>
+            <div style="flex:1;min-width:240px">
+              <h3 style="font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:.35rem">GitHub Action</h3>
+              <p style="font-size:.875rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.65">
+                Official GitHub Action for Nexus. Set up the CLI in your workflow in one step.
+              </p>
+              <div class="code-block">
+                <div class="code-block__header">
+                  <div class="code-block__dots">
+                    <span class="code-block__dot code-block__dot--red"></span>
+                    <span class="code-block__dot code-block__dot--yellow"></span>
+                    <span class="code-block__dot code-block__dot--green"></span>
+                  </div>
+                  <span class="code-block__title">.github/workflows/ci.yml</span>
+                  <button class="code-block__copy">Copy</button>
+                </div>
+                <div class="code-block__body"><code><span class="tok-keyword">- uses</span>: <span class="tok-string">actions/setup-node@v4</span>
+<span class="tok-keyword">- uses</span>: <span class="tok-string">nexuscorp/setup-nexus@v3</span>
+  <span class="tok-prop">with</span>:
+    <span class="tok-prop">version</span>: <span class="tok-string">'3.0.4'</span>
+<span class="tok-keyword">- run</span>: <span class="tok-string">nexus build --affected</span></code></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── System Requirements ── -->
+    <section class="section" aria-labelledby="sysreq-title">
+      <div class="container">
+        <header class="section__header section__header--center">
+          <p class="section__eyebrow">System Requirements</p>
+          <h2 class="section__title" id="sysreq-title">What you need to run Nexus</h2>
+        </header>
+
+        <div class="table-wrapper">
+          <table>
+            <caption class="sr-only">System requirements for Nexus on each platform</caption>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>macOS</th>
+                <th>Windows</th>
+                <th>Linux</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--text-primary)">OS Version</strong></td>
+                <td>macOS 12 Monterey+</td>
+                <td>Windows 10 1903+</td>
+                <td>Kernel 4.19+ (glibc 2.28+)</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Architecture</strong></td>
+                <td>Apple Silicon (M1+) · Intel x64</td>
+                <td>x64 · ARM64</td>
+                <td>x86_64 · ARM64 · ARMv7</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Node.js</strong></td>
+                <td>18 LTS+ (for CLI)</td>
+                <td>18 LTS+ (for CLI)</td>
+                <td>18 LTS+ (for CLI)</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">RAM</strong></td>
+                <td>4 GB (8 GB recommended)</td>
+                <td>4 GB (8 GB recommended)</td>
+                <td>2 GB (4 GB recommended)</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Disk Space</strong></td>
+                <td>500 MB</td>
+                <td>500 MB</td>
+                <td>300 MB</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Desktop GUI</strong></td>
+                <td><span class="check" aria-label="Supported">✓</span></td>
+                <td><span class="check" aria-label="Supported">✓</span></td>
+                <td><span class="check" aria-label="Supported">✓</span></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Remote Cache</strong></td>
+                <td><span class="check" aria-label="Supported">✓</span> Pro only</td>
+                <td><span class="check" aria-label="Supported">✓</span> Pro only</td>
+                <td><span class="check" aria-label="Supported">✓</span> Pro only</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout--info mt-3" style="max-width:640px">
+          <span class="callout__icon">ℹ️</span>
+          <p>The Nexus CLI itself has no Node.js dependency — it ships as a self-contained native binary. Node.js is only required if your project uses JavaScript/TypeScript build scripts.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Verify download ── -->
+    <section class="section section--sm" aria-labelledby="verify-title">
+      <div class="container--tight">
+        <header class="section__header">
+          <p class="section__eyebrow">Security</p>
+          <h2 class="section__title" id="verify-title">Verify your download</h2>
+          <p class="section__subtitle">All releases are signed and checksummed. Verify before installing.</p>
+        </header>
+
+        <div class="code-block">
+          <div class="code-block__header">
+            <div class="code-block__dots">
+              <span class="code-block__dot code-block__dot--red"></span>
+              <span class="code-block__dot code-block__dot--yellow"></span>
+              <span class="code-block__dot code-block__dot--green"></span>
+            </div>
+            <span class="code-block__title">Verify SHA-256</span>
+            <button class="code-block__copy">Copy</button>
+          </div>
+          <div class="code-block__body"><code><span class="tok-comment"># Download checksums file</span>
+<span class="tok-var">curl</span> <span class="tok-op">-L</span> https://releases.nexus.dev/v3.0.4/checksums.txt <span class="tok-op">-o</span> checksums.txt
+
+<span class="tok-comment"># Verify (Linux/macOS)</span>
+<span class="tok-var">sha256sum</span> <span class="tok-op">--check</span> checksums.txt
+
+<span class="tok-comment"># Verify (Windows PowerShell)</span>
+<span class="tok-var">Get-FileHash</span> Nexus-3.0.4-win-x64-setup.msi <span class="tok-op">-Algorithm</span> SHA256</code></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="index.html" class="nav__logo" style="margin-bottom:.75rem;display:inline-flex">
+            <div class="nav__logo-icon" aria-hidden="true">N</div>
+            Nexus
+          </a>
+          <p>The open-source developer platform for building, testing, and shipping modern applications at lightning speed.</p>
+        </div>
+        <div>
+          <div class="footer__col-title">Product</div>
+          <nav class="footer__links">
+            <a href="download.html">Downloads</a>
+            <a href="changelog.html">Changelog</a>
+            <a href="index.html">Pricing</a>
+            <a href="docs.html">Documentation</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Resources</div>
+          <nav class="footer__links">
+            <a href="docs.html">Getting Started</a>
+            <a href="docs.html">API Reference</a>
+            <a href="support.html">Support</a>
+            <a href="support.html">Contributing</a>
+          </nav>
+        </div>
+        <div>
+          <div class="footer__col-title">Community</div>
+          <nav class="footer__links">
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://discord.com" target="_blank" rel="noopener">Discord</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener">Twitter / X</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2025 Nexus Contributors. MIT License.</span>
+        <div class="footer__socials">
+          <a href="https://github.com" target="_blank" rel="noopener" class="footer__social" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

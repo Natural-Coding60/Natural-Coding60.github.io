@@ -1,0 +1,199 @@
+ <title>My GitHub Website</title>
+    <meta name="description" content="Personal website and software projects by Natural-Coding60">
+    <style>
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; max-width: 900px; margin: auto; }
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; max-width: 980px; margin: auto; }
+        header { margin-bottom: 1.5rem; }
+        h1 { margin: 0 0 0.5rem 0; }
+        .meta { color: #555; }
+        .downloads { margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; }
+        .file-list { list-style: none; padding: 0; margin: 0; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #f0f0f0; }
+        .file-info { display:flex; gap: 1rem; align-items:center; }
+        .file-name { font-weight: 600; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px dashed #f6f6f6; }
+        .file-left { display:flex; gap: 1rem; align-items:center; max-width:70%; }
+        .file-icon { width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; font-size:20px; border-radius:8px; background:#f3f4f6; }
+        .file-meta { min-width:0; }
+        .file-name { font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .file-desc { color:#666; font-size:0.95rem; }
+        .download-btn { background:#0366d6; color: #fff; border: none; padding: 0.5rem 0.75rem; border-radius: 6px; text-decoration: none; }
+        .download-btn:hover { background:#024e9e; }
+        .muted { color:#666; font-size:0.95rem; }
+        .empty { color:#666; padding:1rem 0; }
+        .spinner { width:18px; height:18px; border:3px solid #e6e6e6; border-top-color:#0366d6; border-radius:50%; animation:spin 1s linear infinite; display:inline-block; vertical-align:middle; }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        .note { margin-top:0.75rem; color:#444; font-size:0.95rem; }
+    </style>
+</head>
+<body>
+<h1>Welcome to my website</h1>
+    <main>
+        <section class="downloads">
+            <h2>Downloads</h2>
+            <p class="muted">Download project files directly from this site. Files are served statically from this repository (GitHub Pages).</p>
+
+            <ul class="file-list">
+                <li class="file-item">
+                    <div class="file-info">
+                        <div>
+                            <div class="file-name">Repository ZIP (main branch)</div>
+                            <div class="muted">Download a ZIP of the whole repository.</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="download-btn" href="https://github.com/Natural-Coding60/Natural-Coding60.github.io/archive/naltu.zip">Dowload Naltu</a>
+                    </div>
+                </li>
+
+                <li class="file-item">
+                    <div class="file-info">
+                        <div>
+                            <div class="file-name">Example file</div>
+                            <div class="muted">A small sample file stored in the repository (click to download).</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="download-btn" href="/Natural-Coding60.github.io/raw/main/assets/hello.txt" download>Download</a>
+                    </div>
+                </li>
+
+                <!-- Add more static files here. To add files, commit them under the assets/ directory and add entries below. -->
+            </ul>
+
+            <p class="muted" style="margin-top:0.75rem;">Note: Files linked from this page are static and hosted via GitHub — no server-side tracking is performed.</p>
+            <p class="muted">Files located in the repository's <code>assets/</code> folder are shown below. Click a file or the Download button to fetch it.</p>
+
+            <div id="downloadsArea">
+                <div class="muted"><span class="spinner" aria-hidden="true"></span> Loading files...</div>
+            </div>
+
+            <p class="note">Note: This page fetches the file list from GitHub's API and links to the raw file URLs. Unauthenticated requests are rate-limited — if the list fails to load you can add files manually or provide a GitHub token in the script.</p>
+        </section>
+
+        <section style="margin-top:2rem;">
+            <h2>About</h2>
+            <p>Personal website and software projects by Natural-Coding60.</p>
+        </section>
+    </main>
+
+    <script>
+    (function () {
+        const owner = 'Natural-Coding60';
+        const repo = 'Natural-Coding60.github.io';
+        const branch = 'main';
+        const assetsPath = 'assets';
+        const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${assetsPath}?ref=${branch}`;
+
+        const downloadsArea = document.getElementById('downloadsArea');
+
+        function humanFileSize(bytes) {
+            if (bytes === 0) return '0 B';
+            const units = ['B','KB','MB','GB','TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(1024));
+            return (bytes / Math.pow(1024, i)).toFixed(i ? 2 : 0) + ' ' + units[i];
+        }
+
+        function iconForName(name) {
+            const ext = name.split('.').pop().toLowerCase();
+            const map = {
+                'pdf': '📄', 'txt':'📄', 'md':'📝', 'zip':'📦', 'rar':'📦', '7z':'📦',
+                'png':'🖼️', 'jpg':'🖼️', 'jpeg':'🖼️', 'gif':'🖼️', 'svg':'🖼️',
+                'html':'🌐', 'htm':'🌐', 'js':'📜', 'json':'🔧', 'css':'🎨',
+                'exe':'⚙️', 'dmg':'⚙️', 'apk':'🤖', 'mp3':'🎵', 'wav':'🎵',
+                'mp4':'🎞️', 'mov':'🎞️'
+            };
+            return map[ext] || '📁';
+        }
+
+        function renderList(items) {
+            if (!items || items.length === 0) {
+                downloadsArea.innerHTML = '<div class="empty">No files found in <code>assets/</code>. Add files to that folder to expose them here.</div>';
+                return;
+            }
+
+            const ul = document.createElement('ul');
+            ul.className = 'file-list';
+
+            items.forEach(item => {
+                if (item.type !== 'file') return; // skip subdirs for now
+
+                const li = document.createElement('li');
+                li.className = 'file-item';
+
+                const left = document.createElement('div');
+                left.className = 'file-left';
+
+                const icon = document.createElement('div');
+                icon.className = 'file-icon';
+                icon.textContent = iconForName(item.name);
+
+                const meta = document.createElement('div');
+                meta.className = 'file-meta';
+
+                const name = document.createElement('div');
+                name.className = 'file-name';
+                const link = document.createElement('a');
+                link.href = item.download_url || `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}`;
+                link.textContent = item.name;
+                link.setAttribute('download', '');
+                link.style.textDecoration = 'none';
+                link.style.color = 'inherit';
+                link.target = '_blank';
+                name.appendChild(link);
+
+                const desc = document.createElement('div');
+                desc.className = 'file-desc';
+                desc.textContent = `${humanFileSize(item.size)} — ${item.path}`;
+
+                meta.appendChild(name);
+                meta.appendChild(desc);
+
+                left.appendChild(icon);
+                left.appendChild(meta);
+
+                const right = document.createElement('div');
+                const btn = document.createElement('a');
+                btn.className = 'download-btn';
+                btn.href = item.download_url || `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${item.path}`;
+                btn.target = '_blank';
+                btn.textContent = 'Download';
+                btn.setAttribute('download', item.name);
+                right.appendChild(btn);
+
+                li.appendChild(left);
+                li.appendChild(right);
+                ul.appendChild(li);
+            });
+
+            downloadsArea.innerHTML = '';
+            downloadsArea.appendChild(ul);
+        }
+
+        function showError(msg) {
+            downloadsArea.innerHTML = `<div class="empty">${msg}</div>`;
+        }
+
+        // Fetch file list from GitHub API
+        fetch(apiUrl, { headers: { 'Accept': 'application/vnd.github.v3+json' } })
+            .then(resp => {
+                if (resp.status === 404) throw new Error('No assets directory found in the repository.');
+                if (resp.status === 403) throw new Error('GitHub API rate limit exceeded (unauthenticated). Try again later or provide a token.');
+                if (!resp.ok) throw new Error('Failed to fetch assets list from GitHub API.');
+                return resp.json();
+            })
+            .then(json => {
+                if (!Array.isArray(json)) {
+                    showError('Unexpected response from GitHub API.');
+                    return;
+                }
+                renderList(json);
+            })
+            .catch(err => {
+                console.warn('Could not load assets list:', err);
+                showError('Could not load file list from GitHub. You can still download files by linking them manually or add files to the assets/ folder.');
+            });
+    })();
+    </script>
+</body>
+</html>
