@@ -1,10 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My GitHub Website</title>
+    <meta name="description" content="Personal website and software projects by Natural-Coding60">
+    <style>
+        body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 2rem; max-width: 800px; margin: auto; }
+        header { margin-bottom: 1.5rem; }
+        h1 { margin: 0 0 0.5rem 0; }
+        .rating { display: flex; align-items: center; gap: 1rem; }
+        .stars { display: inline-flex; gap: 0.25rem; cursor: pointer; }
+        .star { width: 40px; height: 40px; display: inline-block; background: none; border: none; padding: 0; margin: 0; }
+        .star svg { width: 100%; height: 100%; fill: #e4e5e9; transition: transform .08s ease, fill .12s ease; }
+        .star:hover svg, .star.focus svg { transform: scale(1.05); }
+        .star.selected svg, .star.filled svg { fill: #ffc107; }
+        .meta { color: #555; }
+        .summary { margin-top: 1rem; }
+        .rating-info { font-size: 0.95rem; color: #333; }
+        .clear-btn { margin-left: 1rem; font-size: 0.85rem; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    </style>
 </head>
 <body>
-    <h1>Welcome to my website</h1>
-    <p>This is my first GitHub Pages site.</p>
+    <header>
+        <h1>Welcome to my website</h1>
+        <p class="meta">This is my first GitHub Pages site.</p>
+    </header>
+
+    <main>
+        <section class="summary">
+            <p>Enjoy the site? Leave a rating below.</p>
+
+            <div class="rating" id="ratingWidget">
+                <div class="stars" role="radiogroup" aria-label="Star rating" id="stars">
+                    <!-- 5 star buttons inserted by JS for better accessibility -->
+                </div>
+                <div class="rating-info" id="ratingInfo">No ratings yet</div>
+                <button id="clearRating" class="clear-btn" style="display:none;">Clear my rating</button>
+            </div>
+        </section>
+
+        <section style="margin-top:2rem;">
+            <h2>About</h2>
+            <p>Personal website and software projects by Natural-Coding60.</p>
+        </section>
+    </main>
+
+    <script>
+    // Simple client-side star rating system using localStorage.
+    // Data model stored in localStorage under key: "nc60-site-rating"
+    // Structure: { count: number, sum: number, userRating: number | null }
+
+    (function () {
+        const STORAGE_KEY = 'nc60-site-rating';
+        const starsContainer = document.getElementById('stars');
+        const ratingInfo = document.getElementById('ratingInfo');
+        const clearBtn = document.getElementById('clearRating');
+
+        function createStarBtn(index) {
+            const btn = document.createElement('button');
+            btn.className = 'star';
+            btn.type = 'button';
+            btn.setAttribute('aria-label', index + ' star');
+            btn.setAttribute('role', 'radio');
+            btn.setAttribute('aria-checked', 'false');
+            btn.dataset.value = String(index);
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 .587l3.668 7.431L23.5 9.75l-5.75 5.602L19.335 24 12 19.897 4.665 24l1.585-8.648L.5 9.75l7.832-1.732z"/>
+                </svg>`;
+            btn.addEventListener('click', onStarClick);
+            btn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+                // left/right arrow keys to move between stars
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); focusStar(Math.max(1, index - 1)); }
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); focusStar(Math.min(5, index + 1)); }
+            });
+            return btn;
+        }
+
+        function focusStar(n) {
+            const btn = starsContainer.querySelector(`button[data-value='${n}']`);
+            if (btn) btn.focus();
+        }
+
+        function loadData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return { count: 0, sum: 0, userRating: null };
+                return JSON.parse(raw);
+            } catch (e) {
+                console.warn('Could not load rating data', e);
+                return { count: 0, sum: 0, userRating: null };
+            }
+        }
+
+        function saveData(data) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) {
+                console.warn('Could not save rating data', e);
+            }
+        }
+
+        function render(data) {
+            // update stars
+            const userRating = data.userRating;
+            Array.from(starsContainer.children).forEach((btn) => {
+                const val = Number(btn.dataset.value);
+                btn.classList.toggle('filled', val <= (userRating || Math.round(data.sum / Math.max(1, data.count))));
+                btn.classList.toggle('selected', userRating !== null && val <= userRating);
+                btn.setAttribute('aria-checked', (userRating === val).toString());
+                btn.classList.toggle('focus', document.activeElement === btn);
+            });
+
+            // update info text
+            if (data.count === 0) {
+                ratingInfo.textContent = 'No ratings yet';
+            } else {
+                const avg = (data.sum / data.count);
+                ratingInfo.textContent = `${avg.toFixed(2)} out of 5 — ${data.count} vote${data.count === 1 ? '' : 's'}`;
+            }
+
+            // show/ hide clear button
+            if (data.userRating !== null) {
+                clearBtn.style.display = 'inline-block';
+            } else {
+                clearBtn.style.display = 'none';
+            }
+        }
+
+        function onStarClick(e) {
+            const val = Number(e.currentTarget.dataset.value);
+            const data = loadData();
+            if (data.userRating === null) {
+                // first time rating
+                data.count += 1;
+                data.sum += val;
+                data.userRating = val;
+            } else {
+                // user is changing their rating: replace previous value
+                data.sum = data.sum - data.userRating + val;
+                data.userRating = val;
+            }
+            saveData(data);
+            render(data);
+
+            // simple visual confirmation
+            e.currentTarget.focus();
+        }
+
+        function clearMyRating() {
+            const data = loadData();
+            if (data.userRating !== null) {
+                // remove user's rating from aggregate
+                data.count = Math.max(0, data.count - 1);
+                data.sum = Math.max(0, data.sum - data.userRating);
+                data.userRating = null;
+                saveData(data);
+                render(data);
+            }
+        }
+
+        // initialize stars
+        for (let i = 1; i <= 5; i++) {
+            starsContainer.appendChild(createStarBtn(i));
+        }
+
+        // attach clear handler
+        clearBtn.addEventListener('click', clearMyRating);
+
+        // initial render
+        const initial = loadData();
+        render(initial);
+
+        // Expose for debugging (optional)
+        window.__nc60Rating = {
+            load: loadData,
+            save: saveData,
+            clear: clearMyRating,
+        };
+    })();
+    </script>
 </body>
 </html>
